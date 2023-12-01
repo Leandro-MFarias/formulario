@@ -48,11 +48,18 @@ main {
 }
 
 .form .span {
-    display: none;
     color: #f52e2e;
     font-size: 10px;
     margin-top: -10px;
     margin-left: 5px;
+}
+
+.hidden-span {
+    visibility: hidden;
+}
+
+.visivel {
+    visibility: visible;
 }
 
 .form .error-text {

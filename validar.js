@@ -14,13 +14,15 @@ form.addEventListener('submit', (event) => {
 
 function invalido(index) {
     campos[index].classList.add('text-error')
-    textError[index].classList.add('error-text')
+    textError[index].classList.remove('hidden-span')
+    textError[index].classList.add('error-text', 'visivel')
     campos[index].classList.remove("text-correct")
 }
 
 function valido(index) {
     campos[index].classList.remove('text-error')
-    textError[index].classList.remove('error-text')
+    textError[index].classList.remove('error-text', 'visivel')
+    textError[index].classList.add('hidden-span')
     campos[index].classList.add('text-correct')
 }
 
@@ -67,6 +69,11 @@ function examinar() {
         campos.forEach((campo) => {
             campo.classList.add('hide')
         })
+
+        textError.forEach((campo)=> {
+            campo.classList.add('hide')
+        })
+        
         textoObrigatorio.classList.add('hide')
         btn.classList.add('hide')
         enviado.classList.remove('hide')

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário</title>
+
+    <link rel="stylesheet" href="src/css/reset.css">
+    <link rel="stylesheet" href="src/css/style.css">
+    <link rel="stylesheet" href="src/css/responsive.css">
+    
+</head>
+<body>
+    <main>
+        <div class="ajuda">
+            <h1 class="title">FICOU COM DÚVIDA? <br>NOS MANDE UMA MENSAGEM!</h1>
+            <p class="texto">
+                caso tenha ficado com qualquer dúvida basta nos mandar uma mensagem e entraremos em contato em menos de 24h.
+            </p>
+        </div>
+
+        <form action="#" id="form" class="form" method="get">
+            <input type="text" placeholder="Nome completo *" class="item obrigatorio" id="name">
+            <span class="span">campo obrigatório</span>
+
+            <input type="email" placeholder="Email *" class="item obrigatorio" id="email">
+            <span class="span">campo obrigatório</span>
+
+            <input type="tel" placeholder="Telefone *" class="item obrigatorio" id="fone">
+            <span class="span">campo obrigatório</span>
+
+            <textarea  id="mensagem" class="item area obrigatorio" placeholder="Mensagem *" cols="30" rows="10"></textarea>
+            <span class="span">campo obrigatório</span>
+
+            <p id="texto-obrigatorio" class="texto-obrigatorio">*campos obrigatórios</p>
+            <button id="btn" type="submit" class="btn">Enviar</button> 
+
+            <p id="enviado" class="enviado hide">Dados enviado com Sucesso!</p>
+        </form>
+    </main>
+    <script src="validar.js"></script>
+</body>
+</html>

@@ -4,7 +4,6 @@ body {
     font-family: "Roboto", sans-serif;
     background-image: url(/src/bg-repeat.jpg);
     background-size: contain;
-    background-attachment: fixed;
 }
 
 main {

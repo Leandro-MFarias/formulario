@@ -1,91 +1,60 @@
-const btn = document.getElementById("btn")
 const form = document.getElementById('form')
-const campos = document.querySelectorAll('.obrigatorio')
-const textError = document.querySelectorAll('.span')
+const inputs = document.querySelectorAll('.item')
 const enviado = document.getElementById('enviado')
-const textoObrigatorio = document.getElementById('texto-obrigatorio')
+const btn = document.getElementById('btn')
 const emailRegex = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
-const telRegex = /^\(?[1-9]{2}\)? ?(?:[2-8]|9[0-9])[0-9]{3}\-?[0-9]{4}$/
+const telRegex = /^\(?[1-9]{2}\)? ?(?:[2-8]|9[0-9])[0-9]{3}\-?[0-9]{4}$/;
 
-form.addEventListener('submit', (event) => {
-    event.preventDefault()
-    examinar()
-})
+form.addEventListener('submit', (e) => {
+    e.preventDefault()
 
-function invalido(index) {
-    campos[index].classList.add('text-error')
-    textError[index].classList.remove('hidden-span')
-    textError[index].classList.add('error-text', 'visivel')
-    campos[index].classList.remove("text-correct")
-}
+    let allFieldsValid = true
 
-function valido(index) {
-    campos[index].classList.remove('text-error')
-    textError[index].classList.remove('error-text', 'visivel')
-    textError[index].classList.add('hidden-span')
-    campos[index].classList.add('text-correct')
-}
-
-function validarCampo(campo, index) {
-    if (campo.type === 'email') {
-        if (!emailRegex.test(campo.value)) {
-            invalido(index)
-            return false;
-        } else {
-            valido(index)
-            return true;
-        }
-    } else if (campo.type === 'tel') {
-        if (!telRegex.test(campo.value)) {
-            invalido(index)
-            return false;
-        } else {
-            valido(index)
-            return true;
-        }
-    } else {
-        if (campo.value.length < 3) {
-            invalido(index)
-            return false;
-        } else {
-            valido(index)
-            return true;
-        }
-    }
-}
-
-function examinar() {
-    let camposValidos = true
-
-    campos.forEach((campo, index) => {
-        if(!validarCampo(campo, index)) {
-            camposValidos = false
+    inputs.forEach(input => {
+        if (!validateInput(input)) {
+            allFieldsValid = false
         }
     })
 
-    if(camposValidos) {
+    if (allFieldsValid) {
         form.submit()
-
-        campos.forEach((campo) => {
-            campo.classList.add('hide')
-        })
-
-        textError.forEach((campo)=> {
-            campo.classList.add('hide')
-        })
-        
-        textoObrigatorio.classList.add('hide')
         btn.classList.add('hide')
         enviado.classList.remove('hide')
     } else {
-        return;
+        enviado.classList.add('hide')
+    }
+})
+
+inputs.forEach(input => {
+    input.addEventListener('blur', () =>{
+        validateInput(input)
+    })
+})
+
+function validateInput(input) {
+    if (input.value.trim() === '') {
+        validateInputFalse(input)
+        return false
+    } else {   
+        if(input.type === 'email' && !emailRegex.test(input.value)) {
+            validateInputFalse(input)
+            return false
+        }
+
+        if(input.type === 'tel' && !telRegex.test(input.value)) {
+            validateInputFalse(input)
+            return false
+        }
+
+        input.classList.remove('text-error')
+        input.classList.add('text-correct')
+        input.nextElementSibling.classList.add('hide')
+        return true
     }
 }
 
-campos.forEach((campo, index) => {
-    campo.addEventListener('input', () => validarCampo(campo, index))
-})
-
-campos.forEach((campo, index) => {
-    campo.addEventListener('blur', () => validarCampo(campo, index))
-})
+function validateInputFalse(input) {
+    input.classList.remove('text-correct')
+    input.classList.add('text-error')
+    input.nextElementSibling.classList.remove('hidden')
+}

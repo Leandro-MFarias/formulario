@@ -48,18 +48,14 @@ main {
 }
 
 .form .span {
-    color: #f52e2e;
-    font-size: 10px;
+    color: #F52e2e;
+    font-size: 12px;
     margin-top: -10px;
     margin-left: 5px;
 }
 
-.hidden-span {
+.hidden {
     visibility: hidden;
-}
-
-.visivel {
-    visibility: visible;
 }
 
 .form .error-text {
@@ -88,11 +84,12 @@ textarea::placeholder {
     border-radius: 5px;
     border: none;
     cursor: pointer;
-    transition: 0.3 ease-in-out;
+    transition: 0.6s;
 }
 
 .btn:hover {
     background-color: #3cec62;
+    transform: scale(1.05);
 }
 
 .form .text-error {
@@ -100,7 +97,7 @@ textarea::placeholder {
 }
 
 .form .text-correct {
-    border: 2px solid #00C22B;
+    border: 2px solid #00FF00;
 }
 
 .enviado {
